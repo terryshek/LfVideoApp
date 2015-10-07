@@ -64,14 +64,16 @@ module.exports = function (passport) {
                     // all is well, return user
                     else {
                         //
+                        console.log(req.body)
                         postSchema.remove({}, function (err) {
                             if (err) {
                                 console.log(err)
                             } else {
-                                superagent.get(req.body.resource)
+                                superagent.get("http://q67457789.myqnapcloud.com:8079/wp_vi/index.php/feed/json")
                                     .end(function (err, response) {
                                         //console.log(response)
                                         if (response.ok) {
+                                            console.log(response.body)
                                             for(var index in response.body){
                                                 var newPost = new postSchema({
                                                     id: response.body[index]["id"],
